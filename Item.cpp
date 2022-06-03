@@ -10,14 +10,20 @@ Stage Item:: Generate_item(Stage s){
     int row, col;
     
     while(cnt < 2){
-        row = rand() % 30;
-        col = rand() % 40; 
+        row = (rand() % 29) + 1;
+        col = (rand() % 39) + 1;
         //col, row 랜덤좌표
-        if(cnt == 0){
-            s.stage[s.Current_stage][row][col] = 5; //성장아이템
-            cnt++;
+
+        if(s.stage[s.Current_stage][row][col] != 0){
+            continue;
         }else{
-            s.stage[s.Current_stage][row][col] = 6; //포이즌아이템
+            if(cnt == 0){
+                s.stage[s.Current_stage][row][col] = 5; //성장아이템
+                cnt++;
+            }else{
+                s.stage[s.Current_stage][row][col] = 6;
+                cnt++; //포이즌아이템
+        }       
         }
     }
     return s;
