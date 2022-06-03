@@ -5,15 +5,17 @@
 #include "./Stage.h"
 
 class Map {
-    Map();
-    ~Map();
-
+    int CurrentMap = 0;
     public:
+        Map();
+        ~Map();
+
         void UpdateMap();
-        void GetCurrentMap();
-        void GetScore();
+        void InitScreen();
+        void NextStage();
         void GetMission();
-        
+        int GetScore();
+        int GetCurrentMap();
 };
 
 #endif _MAP_
