@@ -1,12 +1,14 @@
-#pragma once
+#ifndef _ITEM_
+#define _ITEM_
 #include <stdlib.h>
 #include <time.h>
-#include "Map.h"
-#include "Stage.h"
+#include "map.h"
+#include "stage.h"
 
 class Item {
     public:
-        Item();
-        ~Item();
+
         Stage Generate_item(Stage s);
 };
+
+#endif _ITEM_
