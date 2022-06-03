@@ -4,6 +4,10 @@
 using namespace std;
 
 int main() {
-    Map m;
-    m.InitScreen();
+    Map map;
+    Item item;
+    Stage stage;
+    
+    map.InitScreen();
+    stage = map.UpdateMap(stage);
 }

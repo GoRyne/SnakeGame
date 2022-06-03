@@ -1,4 +1,4 @@
-#include "item.h"
+#include "Item.h"
 //성장아이템:5, 포이즌 아이템:6으로 설정
 
 Stage Item:: Generate_item(Stage s){

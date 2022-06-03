@@ -2,7 +2,7 @@
 #define _MAP_
 #include <ncurses.h>
 #include "./Stage.h"
-#include "item.h"
+#include "Item.h"
 #include "Gate.h"
 #include "Snake.h"
 #include <clocale>
