@@ -1,7 +1,8 @@
 #pragma once 
-
+#include "Snake.h"
+#include "Stage.h"
 class Gate {
     public:
-        void GenerateGate();
-        void Potal();
+        Stage GenerateGate(Stage s);
+        void Potal(Snake s);
 };

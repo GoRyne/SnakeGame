@@ -2,6 +2,7 @@
 #include <ncurses.h>
 #include <unistd.h>
 #include "Map.h"
+#include "Gate.h"
 using namespace std;
 
 int main() {
@@ -9,14 +10,15 @@ int main() {
     Item item;
     Stage stage;
     Snake snake;
+    Gate gate;
 
     time_t current_time = 0;
 
     snake.InitializeSnake(); // 스네이크 초기화
     map.InitScreen(); //맵 초기화
     stage = item.Generate_item(stage);
-    stage= map.UpdateMap(stage);
-
+    stage = map.UpdateMap(stage);
+    stage = gate.GenerateGate(stage);
 
     while(true) {
         map.GetScore();
