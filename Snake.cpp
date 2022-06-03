@@ -40,34 +40,18 @@ void Snake::setDirection()
     {
 
     case KEY_RIGHT:
-        if (direction == 'l')
-        {
-            // 반대방향 키를 누르면 게임 종료
-        }
         direction = 'r'; // 우측 방향
         break;
 
     case KEY_LEFT:
-        if (direction == 'r')
-        {
-            // 반대방향 키를 누르면 게임 종료
-        }
         direction = 'l'; // 좌측 방향
         break;
 
     case KEY_UP:
-        if (direction == 'd')
-        {
-            // 반대방향 키를 누르면 게임 종료
-        }
         direction = 'u'; // 아래 방향
         break;
 
     case KEY_DOWN:
-        if (direction == 'u')
-        {
-            // 반대방향 키를 누르면 게임 종료
-        }
         direction = 'd'; // 위쪽 방향
         break;
     }
@@ -103,7 +87,9 @@ void Snake:: Increase(Position P) {
     headPosition = *bodies.begin();
 }
 
-void Snake:: Decrease() {
+void Snake:: Decrease(Stage s) {
     snakeLen--;
+    Position tmp = *bodies.end();
+    s.stage[s.Current_stage][tmp.GetPositionX()][tmp.GetPositionY()] = 0;
     bodies.pop_back();
 }

@@ -15,7 +15,7 @@ class Snake {
         void setDirection();
         void InitializeSnake();
         void Increase(Position P);
-        void Decrease();
+        void Decrease(Stage s);
         void Move();
         Stage MakeSnake(Stage s);
 };
