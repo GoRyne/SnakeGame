@@ -1,6 +1,5 @@
 #ifndef _MAP_
 #define _MAP_
-
 #include <ncurses.h>
 #include "./Stage.h"
 
