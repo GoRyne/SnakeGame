@@ -1,7 +1,6 @@
-#ifndef _MAP_
-#define _MAP_
+#pragma once
 #include <ncurses.h>
-#include "./Stage.h"
+#include "Stage.h"
 #include "Item.h"
 #include "Gate.h"
 #include "Snake.h"
@@ -24,5 +23,3 @@ class Map {
         int GetCurrentMap();
         void delScreen();
 };
-
-#endif _MAP_
