@@ -6,10 +6,10 @@ class Position {
             position_x = x;
             position_y = y;
         }
-        int Position:: GetPositionX() {
+        int GetPositionX() {
             return position_x;
         }
-        int Position:: GetPositionY() {
+        int GetPositionY() {
             return position_y;
         }
 };

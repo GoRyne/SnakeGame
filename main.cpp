@@ -4,5 +4,6 @@
 using namespace std;
 
 int main() {
-   InitScreen();
+    Map m;
+    m.InitScreen();
 }

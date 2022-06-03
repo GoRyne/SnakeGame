@@ -1,5 +1,4 @@
-#ifndef _SNAKE_
-#define _SNAKE_
+#pragma once
 
 #include <vector>
 #include "Position.h"
@@ -19,5 +18,3 @@ class Snake {
         void Decrease();
         void Move();
 };
-
-#endif _SNAKE_

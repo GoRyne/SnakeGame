@@ -1,10 +1,9 @@
-#ifndef _GATE_
-#define _GATE_
+#pragma once 
 
 class Gate {
     public:
         Gate();
         ~Gate();
+        void GenerateGate();
+        void Potal();
 };
-
-#endif _GATE_

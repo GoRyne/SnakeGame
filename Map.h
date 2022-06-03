@@ -1,10 +1,9 @@
-#ifndef _MAP_
-#define _MAP_
+#pragma once
 #include <ncurses.h>
-#include "./Stage.h"
-#include "item.h"
-#include "gate.h"
-#include "snake.h"
+#include "Stage.h"
+// #include "Item.h"
+// #include "Gate.h"
+// #include "Snake.h"
 #include <clocale>
 #include <locale.h>
 using namespace std;
@@ -14,9 +13,6 @@ class Map {
     WINDOW *window_map, *window_mission, *window_score;
     int CurrentMap = 0;
     public:
-        Map();
-        ~Map();
-
         void UpdateMap();
         void InitScreen();
         void NextStage();
@@ -25,4 +21,3 @@ class Map {
         int GetCurrentMap();
 };
 
-#endif _MAP_
