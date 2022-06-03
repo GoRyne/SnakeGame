@@ -16,9 +16,9 @@ int main() {
 
     snake.InitializeSnake(); // 스네이크 초기화
     map.InitScreen(); //맵 초기화
-    stage = item.Generate_item(stage);
-    stage = map.UpdateMap(stage);
-    stage = gate.GenerateGate(stage);
+    stage = item.Generate_item(stage);//stage에 item 추가
+    stage = map.UpdateMap(stage); // stage를 map에 나타냄
+    stage = gate.GenerateGate(stage); //stage에 gate 추가
 
     while(true) {
         map.GetScore();
@@ -30,7 +30,7 @@ int main() {
         if (current_time == 0) {
             current_time = time(NULL);
         } else {
-            if (time(NULL) - current_time > rand() % 50) {
+            if (time(NULL) - current_time > rand() % 100) {
                 current_time = 0;
                 stage = item.Delete_item(stage);
                 stage = item.Generate_item(stage);
@@ -38,6 +38,7 @@ int main() {
         }
         
 
+        //snake가 move시 제약 조건
         // 벽에 닿을 때.
         if (stage.stage[stage.Current_stage][snake.headPosition.GetPositionX()][snake.headPosition.GetPositionY()] == 1 || stage.stage[stage.Current_stage][snake.headPosition.GetPositionX()][snake.headPosition.GetPositionY()] == 2) {
             return 0;
@@ -62,9 +63,9 @@ int main() {
             }
         }
 
-        stage = snake.MakeSnake(stage);
+        stage = snake.MakeSnake(stage); //snake를 밑에 띄움
         map.UpdateMap(stage);
-        usleep(200000);
+        usleep(500000);
     }
 
     return 0;
