@@ -28,3 +28,14 @@ Stage Item:: Generate_item(Stage s){
     }
     return s;
 }
+
+Stage Item:: Delete_item(Stage s) {
+    for (int i = 0; i < 30; i++) {
+        for (int j = 0; j < 40; j++) {
+            if (s.stage[s.Current_stage][i][j] == 6 || s.stage[s.Current_stage][i][j] == 5) {
+                s.stage[s.Current_stage][i][j] = 0;
+            }
+        }
+    }
+    return s;
+}

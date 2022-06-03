@@ -6,4 +6,5 @@
 class Item {
     public:
         Stage Generate_item(Stage s);
+        Stage Delete_item(Stage s);
 };
