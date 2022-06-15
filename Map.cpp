@@ -60,6 +60,8 @@
     return s;
     };
     
+    // Stage s를 통해서 current_stage값을 확인하고 Score를 통해서 스테이지 통과 조건을 모두 만족했는지 확인 후 
+    // 현재 스테이지 통과 조건을 모두 만족하면 Current_stage를 1 늘려 다음 스테이지로 진입 후  score를 초기화 후 리턴.
     Stage Map:: NextStage(Stage s, Score *score, Snake *snake) {
         if (score->lengthCheck && score->growthCheck && score->poisonCheck && score->gateCheck) {
             // 다음 스테이지로 이동.
@@ -83,13 +85,14 @@
     // 윈도우 테두리 출력
     wborder(window_mission, '|', '|', '-', '-', '+', '+', '+', '+');
 
-    // todo //
-    // int goal_length, goal_growth_item, goal_poison_item, goal_number_of_passed_gate
+    // Score에 있는 변수들을 통해서 1 즉 통과 조건을 만족했으면 'v'를 할당하고 아직 조건을 통과하지 못했다면 공백문자를 
+    // 할당해서 화면에 조건을 통과 했는지 표시.
     char lc = s.lengthCheck == 1 ? 'v' : ' ';
     char gc = s.growthCheck == 1 ? 'v' : ' ';
     char pc = s.poisonCheck == 1 ? 'v' : ' ';
     char tc = s.gateCheck == 1 ? 'v' : ' ';
 
+    // 위에서 할당한 문자와 Score에 있는 변수들을 통해서 현재 점수와 스테이지 클리어 조건을 만족했는지 표시.
     mvwprintw(window_mission, 1, 10, "*Mission*");
     mvwprintw(window_mission, 3, 2, "B : %d (%c)", s.currentLength, lc);
     mvwprintw(window_mission, 4, 2, "+ : %d (%c)", s.growthItem, gc);
@@ -103,12 +106,10 @@
     
 
     int Map::GetScore(Score s, Stage stage){
-        // todo // 
-        // int current_length, current_grow_item, current_poison_item, current_num_of_passed_gate
-
         // 윈도우 테두리 출력
         wborder(window_score, '|', '|', '-', '-', '+', '+', '+', '+');
 
+        // Score에 있는 변수들을 통해서 점수를 출력.
         mvwprintw(window_score, 1, 10, "#Score Board#"); 
         mvwprintw(window_score, 2, 2, "B : %d / %d", s.currentLength, s.mission[stage.Current_stage][0]);  // current / max
         mvwprintw(window_score, 4, 2, "+ :   %d  ", s.growthItem);
