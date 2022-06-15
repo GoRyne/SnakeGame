@@ -10,8 +10,8 @@
 
        
         window_map = newwin(30, 40, 15, 15); // @window_map: x = 15, y = 15 위치에 가로 40, 세로 30의 크기의 윈도우
-        window_mission = newwin(10, 30, 5, 15); // @window_mission: 미션 표시 윈도우
-        window_score = newwin(10, 30, 5, 55); // @window_score: 점수 표시 윈도우
+        window_mission = newwin(10, 30, 30, 57); // @window_mission: 미션 표시 윈도우
+        window_score = newwin(10, 30, 15, 57); // @window_score: 점수 표시 윈도우
 
     };
 
@@ -109,8 +109,8 @@
         // 윈도우 테두리 출력
         wborder(window_score, '|', '|', '-', '-', '+', '+', '+', '+');
 
-        mvwprintw(window_score, 1, 11, "#Score Board#"); 
-        mvwprintw(window_score, 3, 2, "B : %d / %d", s.currentLength, s.mission[stage.Current_stage][0]);  // current / max
+        mvwprintw(window_score, 1, 10, "#Score Board#"); 
+        mvwprintw(window_score, 2, 2, "B : %d / %d", s.currentLength, s.mission[stage.Current_stage][0]);  // current / max
         mvwprintw(window_score, 4, 2, "+ :   %d  ", s.growthItem);
         mvwprintw(window_score, 5, 2, "- :   %d  ", s.poisonItem);
         mvwprintw(window_score, 6, 2, "G :   %d   ", s.gatePass);
