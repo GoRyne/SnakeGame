@@ -17,9 +17,9 @@ class Map {
 
         Stage UpdateMap(Stage s);
         void InitScreen();
-        void NextStage();
-        void GetMission();
-        int GetScore();
+        Stage NextStage(Stage s, Score *score, Snake *snake);
+        void GetMission(Score s);
+        int GetScore(Score s, Stage stage);
         int GetCurrentMap();
         void delScreen();
 };

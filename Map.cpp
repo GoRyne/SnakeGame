@@ -1,4 +1,5 @@
 #include "Map.h"
+#include "Score.cpp"
 
     void Map:: InitScreen(){
         
@@ -60,8 +61,26 @@
     return s;
     };
     
+    Stage Map:: NextStage(Stage s, Score *score, Snake *snake) {
+        if (score->lengthCheck && score->growthCheck && score->poisonCheck && score->gateCheck) {
+            // 다음 스테이지로 이동.
+            s.Current_stage += 1;
+            // score 점수 초기화.
+            score->currentLength = 0;
+            score->growthItem = 0;
+            score->poisonItem = 0;
+            score->gatePass = 0;
 
-    void Map::GetMission(){
+            score->lengthCheck = 0;
+            score->growthCheck = 0;
+            score->poisonCheck = 0;
+            score->gateCheck = 0;
+            snake->InitializeSnake();
+        }
+        return s;
+    }
+
+    void Map::GetMission(Score s){
     // 윈도우 테두리 출력
     wborder(window_mission, '|', '|', '-', '-', '+', '+', '+', '+');
 
@@ -69,10 +88,10 @@
     // int goal_length, goal_growth_item, goal_poison_item, goal_number_of_passed_gate
 
     mvwprintw(window_mission, 1, 10, "*Mission*");
-    mvwprintw(window_mission, 3, 2, "Goal Length : %d", 0);
-    mvwprintw(window_mission, 4, 2, "Goal Growth Item : %d", 0);
-    mvwprintw(window_mission, 5, 2, "Goal Posion Item : %d", 0);
-    mvwprintw(window_mission, 6, 2, "Goal Gate : %d", 0);
+    mvwprintw(window_mission, 3, 2, "B : %d (%d)", s.currentLength, s.lengthCheck);
+    mvwprintw(window_mission, 4, 2, "+ : %d (%d)", s.growthItem, s.growthCheck);
+    mvwprintw(window_mission, 5, 2, "- : %d (%d)", s.poisonItem, s.poisonCheck);
+    mvwprintw(window_mission, 6, 2, "G : %d (%d)", s.gatePass, s.gateCheck);
 
     // 윈도우 refresh
     refresh();
@@ -80,18 +99,18 @@
     }
     
 
-    int Map::GetScore(){
+    int Map::GetScore(Score s, Stage stage){
         // todo // 
         // int current_length, current_grow_item, current_poison_item, current_num_of_passed_gate
 
         // 윈도우 테두리 출력
         wborder(window_score, '|', '|', '-', '-', '+', '+', '+', '+');
 
-        mvwprintw(window_score, 1, 11, "#Score#"); 
-        mvwprintw(window_score, 3, 2, "Current Length : %d / %d", 0, 0);  // current / max
-        mvwprintw(window_score, 4, 2, "Current Growth Item :   %d  ", 0);
-        mvwprintw(window_score, 5, 2, "Current Poison Item :   %d  ", 0);
-        mvwprintw(window_score, 6, 2, "Current Gate :   %d   ", 0);
+        mvwprintw(window_score, 1, 11, "#Score Board#"); 
+        mvwprintw(window_score, 3, 2, "B : %d / %d", s.currentLength, s.mission[stage.Current_stage][0]);  // current / max
+        mvwprintw(window_score, 4, 2, "+ :   %d  ", s.growthItem);
+        mvwprintw(window_score, 5, 2, "- :   %d  ", s.poisonItem);
+        mvwprintw(window_score, 6, 2, "G :   %d   ", s.gatePass);
 
         // 윈도우 refresh
         refresh();

@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include "Map.h"
 #include "Gate.h"
+#include "Score.cpp"
 using namespace std;
 
 int main() {
@@ -11,6 +12,7 @@ int main() {
     Stage stage;
     Snake snake;
     Gate gate;
+    Score score;
     int count = -1;
 
     time_t current_time = 0;
@@ -22,10 +24,12 @@ int main() {
     stage = gate.GenerateGate(stage); //stage에 gate 추가
 
     while(true) {
-        map.GetScore();
-        map.GetMission();
+        map.GetScore(score, stage);
+        map.GetMission(score);
         snake.setDirection();
         snake.Move();
+
+        score.currentLength = snake.snakeLen;
 
         // 랜덤으로 아이템이 생성되는 것.
         if (current_time == 0) {
@@ -38,11 +42,12 @@ int main() {
             }
         }
         
+        // 다음 스테이지로 넘어가야하는지 NextStage()를 통해서 확인.
+        stage = map.NextStage(stage, &score, &snake);
 
         //snake가 move시 제약 조건
         // 벽에 닿을 때.
         if (stage.stage[stage.Current_stage][snake.headPosition.GetPositionX()][snake.headPosition.GetPositionY()] == 1 || stage.stage[stage.Current_stage][snake.headPosition.GetPositionX()][snake.headPosition.GetPositionY()] == 2) {
-            return 0;
         }
 
         // 몸에 닫을 때.
@@ -56,8 +61,24 @@ int main() {
 
         // 아이템에 닿을 때.
         if (stage.stage[stage.Current_stage][snake.headPosition.GetPositionX()][snake.headPosition.GetPositionY()] == 5) {
+            // 그로쓰 아이템 먹은 개수 확인.
+            score.growthItem++;
+            if (score.mission[stage.Current_stage][1] <= score.growthItem) {
+                score.growthCheck = 1;
+            }
+
+            //스네이크 길이 증가.
             snake.Increase(Position(snake.headPosition.GetPositionX(), snake.headPosition.GetPositionY()));
+
+
         } else if (stage.stage[stage.Current_stage][snake.headPosition.GetPositionX()][snake.headPosition.GetPositionY()] == 6) {
+            // 포이즌 아이템 먹은 개수 확인.
+            score.poisonItem++;
+            if (score.mission[stage.Current_stage][2] <= score.poisonItem) {
+                score.poisonCheck = 1;
+            }
+
+            //스네이크 길이 감소.
             snake.Decrease(stage);
             if (snake.snakeLen < 3) {
                 return 0;
@@ -68,6 +89,12 @@ int main() {
 
         // 게이트에 들어갈 때.
         if (stage.stage[stage.Current_stage][snake.headPosition.GetPositionX()][snake.headPosition.GetPositionY()] == 7) {
+            // 미션 달성 조건 확인.
+            score.gatePass++;
+            if (score.mission[stage.Current_stage][3] <= score.gatePass) {
+                score.gateCheck = 1;
+            }
+            // 게이트 통과 함수.
             stage = gate.Potal(&snake, stage);
             count = snake.bodies.size();
         }

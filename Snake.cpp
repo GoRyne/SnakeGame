@@ -4,8 +4,11 @@
 
 void Snake:: InitializeSnake () { 
     //Snake 초기화 (초기 길이, 위치 설정)
-    snakeLen = 3; 
-    bodies.push_back(headPosition);
+    snakeLen = 3;
+    while (bodies.size() != 0) {
+        bodies.pop_back();
+    }
+    bodies.push_back(headPosition = Position(4,3));
     bodies.push_back(Position(4,2));
     bodies.push_back(Position(4,1));
 }
