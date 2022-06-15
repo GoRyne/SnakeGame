@@ -10,6 +10,7 @@ class Snake {
         int snakeLen;
         Position headPosition = Position(4,3);
         Position tailPosition = Position(4,1);
+        Position gatePosition = Position(0,0);
         std::vector<Position> bodies;
 
         void setDirection();

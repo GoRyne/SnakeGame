@@ -81,17 +81,17 @@ void Snake:: Move () {
         bodies.pop_back();
         headPosition = *bodies.begin();
     }
+    snakeLen = bodies.size();
 }
 
 void Snake:: Increase(Position P) { //뱀의 길이를 head방향으로 늘림
-    snakeLen++; 
     bodies.insert(bodies.begin(), P); 
     headPosition = *bodies.begin(); 
+    snakeLen++; 
 }
 
 void Snake:: Decrease(Stage s) { //뱀의 길이를 tail을 pop 하는 방식으로 줄임
-    snakeLen--;
-    Position tmp = *bodies.end();
-    s.stage[s.Current_stage][tmp.GetPositionX()][tmp.GetPositionY()] = 0;
+    s.stage[s.Current_stage][bodies.back().GetPositionX()][bodies.back().GetPositionY()] = 0;
     bodies.pop_back();
+    snakeLen--;
 }

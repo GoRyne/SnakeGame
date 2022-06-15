@@ -11,6 +11,7 @@ int main() {
     Stage stage;
     Snake snake;
     Gate gate;
+    int count = -1;
 
     time_t current_time = 0;
 
@@ -62,15 +63,23 @@ int main() {
                 return 0;
             }
         }
+        
+        count--;
 
         // 게이트에 들어갈 때.
         if (stage.stage[stage.Current_stage][snake.headPosition.GetPositionX()][snake.headPosition.GetPositionY()] == 7) {
-            stage = gate.Potal(snake, stage);
+            stage = gate.Potal(&snake, stage);
+            count = snake.bodies.size();
         }
-
+        
+        // 게이트 통과 후 원래 게이트가 있던 자리 초기화.
+        if (count == 0) {
+            stage.stage[stage.Current_stage][snake.gatePosition.GetPositionX()][snake.gatePosition.GetPositionY()] = 7;
+        }
+    
         stage = snake.MakeSnake(stage); //snake를 밑에 띄움
         map.UpdateMap(stage);
-        usleep(200000);
+        usleep(100000);
     }
 
     return 0;
