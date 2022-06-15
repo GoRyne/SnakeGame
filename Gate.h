@@ -4,5 +4,5 @@
 class Gate {
     public:
         Stage GenerateGate(Stage s);
-        void Potal(Snake s);
+        Stage Potal(Snake &snake, Stage &stage);
 };

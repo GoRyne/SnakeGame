@@ -63,9 +63,14 @@ int main() {
             }
         }
 
+        // 게이트에 들어갈 때.
+        if (stage.stage[stage.Current_stage][snake.headPosition.GetPositionX()][snake.headPosition.GetPositionY()] == 7) {
+            stage = gate.Potal(snake, stage);
+        }
+
         stage = snake.MakeSnake(stage); //snake를 밑에 띄움
         map.UpdateMap(stage);
-        usleep(500000);
+        usleep(200000);
     }
 
     return 0;
