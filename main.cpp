@@ -3,7 +3,6 @@
 #include <unistd.h>
 #include "Map.h"
 #include "Gate.h"
-#include "Score.cpp"
 using namespace std;
 
 int main() {
@@ -48,6 +47,7 @@ int main() {
         //snake가 move시 제약 조건
         // 벽에 닿을 때.
         if (stage.stage[stage.Current_stage][snake.headPosition.GetPositionX()][snake.headPosition.GetPositionY()] == 1 || stage.stage[stage.Current_stage][snake.headPosition.GetPositionX()][snake.headPosition.GetPositionY()] == 2) {
+            return 0;
         }
 
         // 몸에 닫을 때.
@@ -106,7 +106,7 @@ int main() {
     
         stage = snake.MakeSnake(stage); //snake를 밑에 띄움
         map.UpdateMap(stage);
-        usleep(100000);
+        usleep(300000);
     }
 
     return 0;

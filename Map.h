@@ -7,6 +7,7 @@
 #include <clocale>
 #include <locale.h>
 #include "Stage.h"
+#include "Score.cpp"
 using namespace std;
 
 class Map {

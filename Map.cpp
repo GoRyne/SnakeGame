@@ -1,5 +1,4 @@
 #include "Map.h"
-#include "Score.cpp"
 
     void Map:: InitScreen(){
         
@@ -86,12 +85,16 @@
 
     // todo //
     // int goal_length, goal_growth_item, goal_poison_item, goal_number_of_passed_gate
+    char lc = s.lengthCheck == 1 ? 'v' : ' ';
+    char gc = s.growthCheck == 1 ? 'v' : ' ';
+    char pc = s.poisonCheck == 1 ? 'v' : ' ';
+    char tc = s.gateCheck == 1 ? 'v' : ' ';
 
     mvwprintw(window_mission, 1, 10, "*Mission*");
-    mvwprintw(window_mission, 3, 2, "B : %d (%d)", s.currentLength, s.lengthCheck);
-    mvwprintw(window_mission, 4, 2, "+ : %d (%d)", s.growthItem, s.growthCheck);
-    mvwprintw(window_mission, 5, 2, "- : %d (%d)", s.poisonItem, s.poisonCheck);
-    mvwprintw(window_mission, 6, 2, "G : %d (%d)", s.gatePass, s.gateCheck);
+    mvwprintw(window_mission, 3, 2, "B : %d (%c)", s.currentLength, lc);
+    mvwprintw(window_mission, 4, 2, "+ : %d (%c)", s.growthItem, gc);
+    mvwprintw(window_mission, 5, 2, "- : %d (%c)", s.poisonItem, pc);
+    mvwprintw(window_mission, 6, 2, "G : %d (%c)", s.gatePass, tc);
 
     // 윈도우 refresh
     refresh();
